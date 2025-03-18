@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./config/mongo'); // Import de la connexion MongoDB
 require('dotenv').config();
 const UsersRouter = require('./routes/users');
+const PropertiesRouter = require('./routes/properties');
 
 const app = express();
 
@@ -10,6 +11,7 @@ connectDB();
 app.use(express.json());
 
 app.use("/api/users", UsersRouter)
+app.use("/api/properties", PropertiesRouter)
 
 app.get('/', (req, res) => {
     res.send('🚀 API en cours d\'exécution...');

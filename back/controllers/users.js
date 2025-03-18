@@ -20,6 +20,20 @@ const createUser = async (req, res) => {
     }
 }
 
+const getUserById = async (req, res) => {
+    const {userId} = req.params;
+
+    try {
+        const user = await UsersModel.findById(userId)
+        user ?
+            res.status(200).json(user) :
+            res.status(404).json({error: 'Aucun utilisateur trouvé'})
+    } catch (e) {
+        console.error(e)
+        res.status(500).json({error: 'Erreur lors de la recuperation'});
+    }
+}
+
 const updateUser = async (req, res) => {
     const {userId} = req.params;
     const data = {...req.body};
@@ -56,20 +70,6 @@ const deleteUser = async (req, res) => {
     } catch (e) {
         console.error(e)
         res.status(500).json({error: "Erreur lors de la suppression de l'utilisateur"})
-    }
-}
-
-const getUserById = async (req, res) => {
-    const {userId} = req.params;
-
-    try {
-        const user = await UsersModel.findById(userId)
-        user ?
-            res.status(200).json(user) :
-            res.status(404).json({error: 'Aucun utilisateur trouvé'})
-    } catch (e) {
-        console.error(e)
-        res.status(500).json({error: 'Erreur lors de la recuperation'});
     }
 }
 

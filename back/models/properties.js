@@ -15,7 +15,6 @@ const PropertySchema = new mongoose.Schema({
   guests: { type: Number, required: true }, // Nombre max de personnes
   bedrooms: { type: Number, required: true },
   bathrooms: { type: Number, required: true },
-  // amenities: [{ type: String }], // Ex : ['WiFi', 'Cuisine équipée', 'Piscine']
   images: [{ type: String }],
   availability: [{
     startDate: Date,
