@@ -8,7 +8,6 @@ const ReservationSchema = new mongoose.Schema({
   endDate: { type: Date, required: true },
   totalPrice: { type: Number, required: true },
   status: { type: String, enum: ['En attente', 'Confirmée', 'Annulée'], default: 'En attente' },
-  // paymentIntent: { type: String }, // ID du paiement Stripe
   createdAt: { type: Date, default: Date.now }
 });
 

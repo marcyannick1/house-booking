@@ -1,5 +1,4 @@
 const PropertiesModel = require('../models/properties');
-const UsersModel = require("../models/users");
 
 const createProperty = async (req, res) => {
     const {
