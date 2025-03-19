@@ -7,6 +7,7 @@ const PropertiesRouter = require('./routes/properties');
 const ReservationsRouter = require('./routes/reservations');
 const ReviewsRouter = require('./routes/reviews');
 const FavoritesRouter = require('./routes/favorites');
+const AuthRouter = require('./routes/auth');
 
 
 const app = express();
@@ -20,6 +21,7 @@ app.use("/api/properties", PropertiesRouter)
 app.use("/api/reservations", ReservationsRouter)
 app.use("/api/reviews", ReviewsRouter)
 app.use("/api/favorites", FavoritesRouter)
+app.use("/api/auth", AuthRouter)
 
 app.get('/', (req, res) => {
     res.send('🚀 API en cours d\'exécution...');
