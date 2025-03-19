@@ -11,7 +11,6 @@ const createProperty = async (req, res) => {
         guests,
         bedrooms,
         bathrooms,
-        images,
         availability
     } = req.body;
 
@@ -19,6 +18,8 @@ const createProperty = async (req, res) => {
         if (!title || !description || !owner || !address?.street || !address?.city || !address?.postalCode || !pricePerNight || !surface || !guests || !bedrooms || !bathrooms) {
             return res.status(400).json({error: 'Tous les champs obligatoires doivent être remplis.'});
         }
+
+        const imageUrls = req.files ? req.files.map((file) => file.path) : [];
 
         const newProperty = await PropertiesModel.create({
             title,
@@ -30,7 +31,7 @@ const createProperty = async (req, res) => {
             guests,
             bedrooms,
             bathrooms,
-            images: images || [],
+            images: imageUrls,
             availability: availability || [],
         });
 
