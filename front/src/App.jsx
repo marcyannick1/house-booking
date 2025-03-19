@@ -1,11 +1,21 @@
-import { Button } from "@/components/ui/button"
+import {Route, Routes} from "react-router-dom";
+import Login from "@/pages/Login.jsx";
+import Register from "@/pages/Register.jsx";
+import Home from "@/pages/Home.jsx";
+import PrivateRoutes from "@/utils/PrivateRoutes.jsx";
 
 function App() {
-  return (
-    <div className="flex flex-col items-center justify-center min-h-svh">
-      <Button>Click me</Button>
-    </div>
-  )
+    return (
+        <>
+            <Routes>
+                <Route element={<PrivateRoutes/>}>
+                    <Route path="/" element={<Home/>}/>
+                </Route>
+                <Route path="/login" element={<Login/>}/>
+                <Route path="/register" element={<Register/>}/>
+            </Routes>
+        </>
+    )
 }
 
 export default App
