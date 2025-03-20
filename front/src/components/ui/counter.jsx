@@ -1,12 +1,9 @@
-import {useState} from "react";
-import {Button} from "@/components/ui/button.jsx"; // Assure-toi d'importer le bon composant Button
-import {cn} from "@/lib/utils.js"; // Utilisation des utilitaires ShadCN pour les classes CSS
+import { Button } from "@/components/ui/button.jsx";
+import { cn } from "@/lib/utils.js";
 
-export default function Counter() {
-    const [count, setCount] = useState(0); // État pour stocker la valeur du compteur
-
-    const increment = () => setCount(count + 1); // Incrémente le compteur
-    const decrement = () => setCount(count - 1); // Décrémente le compteur
+export default function Counter({ value, onChange }) {
+    const increment = () => onChange(value + 1); // 🔥 Augmente la valeur
+    const decrement = () => onChange(value > 1 ? value - 1 : 0); // 🔥 Empêche d'aller sous 1
 
     return (
         <div className="flex items-center space-x-4">
@@ -15,15 +12,17 @@ export default function Counter() {
                 size="sm"
                 className={cn("p-2")}
                 onClick={decrement}
+                type="button"
             >
                 -
             </Button>
-            <span className="text-md font-semibold">{count}</span> {/* Affichage du compteur */}
+            <span className="text-md font-semibold">{value}</span> {/* 🔥 Affichage de la valeur de `Formik` */}
             <Button
                 size="sm"
                 variant="outline"
                 className={cn("p-2")}
                 onClick={increment}
+                type="button"
             >
                 +
             </Button>

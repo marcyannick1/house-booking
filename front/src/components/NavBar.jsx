@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 import {HeartIcon, PlusIcon, UserRound} from "lucide-react";
 
 
-export default function NavBar() {
+export default function NavBar({openModal}) {
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white dark:border-gray-800 dark:bg-gray-950">
             <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
@@ -18,7 +18,7 @@ export default function NavBar() {
                     <Button variant="ghost" className="rounded md:flex hidden">
                         <UserRound/>
                     </Button>
-                    <Button className="md:flex hidden">
+                    <Button className="md:flex hidden" onClick={openModal}>
                         <PlusIcon />
                         <span>Publier une annonce</span>
                     </Button>

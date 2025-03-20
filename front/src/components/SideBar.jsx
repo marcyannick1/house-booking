@@ -14,8 +14,8 @@ export function HomeSidebar() {
     const [priceRange, setPriceRange] = useState([20, 80]);
 
     const [date, setDate] = useState({
-        from: new Date(2022, 0, 20),
-        to: addDays(new Date(2022, 0, 20), 20),
+        from: new Date(),
+        to: addDays(new Date(), 20),
     });
 
     const [selectedType, setSelectedType] = useState("appartement");
@@ -39,10 +39,10 @@ export function HomeSidebar() {
                                 key={type}
                                 value={type}
                                 className={cn(
-                                    "px-4 py-2 rounded-md border border-gray-300 transition text-sm",
+                                    "px-4 bg-gray-100 py-2 rounded-md border border-gray-300 transition text-sm",
                                     selectedType === type
-                                        ? "bg-primary text-white shadow-lg"
-                                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                                        ? "border-2 border-black text-white"
+                                        : "text-gray-700 hover:bg-gray-200"
                                 )}
                             >
                                 {type.charAt(0).toUpperCase() + type.slice(1)}
