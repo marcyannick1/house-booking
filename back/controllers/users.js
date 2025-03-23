@@ -2,10 +2,11 @@ const UsersModel = require('../models/users');
 const {hashPassword} = require("../utils/password");
 
 const createUser = async (req, res) => {
-    const {name, email, password, phone} = req.body;
+    const {firstName, lastName, email, password, phone} = req.body;
     try {
         const user = await UsersModel.create({
-            name,
+            firstName,
+            lastName,
             email: email.toLowerCase(),
             passwordHash: await hashPassword(password),
             phone,

@@ -11,15 +11,19 @@ const PropertySchema = new mongoose.Schema({
     country: { type: String, default: 'France' }
   },
   pricePerNight: { type: Number, required: true }, // Prix par nuit
-  surface: { type: Number, required: true }, // En m²
   guests: { type: Number, required: true }, // Nombre max de personnes
   bedrooms: { type: Number, required: true },
   bathrooms: { type: Number, required: true },
+  propertyType: {
+    type: String,
+    enum: ["appartement", "maison", "villa", "studio"],
+    required: true
+  },
   images: [{ type: String }],
-  availability: [{
+  availability: {
     startDate: Date,
     endDate: Date
-  }],
+  },
   createdAt: { type: Date, default: Date.now }
 });
 
