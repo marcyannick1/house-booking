@@ -31,7 +31,7 @@ export default function LoginForm() {
     };
 
     useEffect(() => {
-        console.log(userInfo);
+        // console.log(userInfo);
         if (userInfo) {
             navigate('/');
         }

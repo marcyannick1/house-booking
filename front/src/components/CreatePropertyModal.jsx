@@ -8,7 +8,7 @@ import {Formik, Form, Field, ErrorMessage} from "formik";
 import {Popover, PopoverContent, PopoverTrigger} from "@/components/ui/popover";
 import {Calendar} from "@/components/ui/calendar";
 import {addDays, format} from "date-fns";
-import {CalendarIcon} from "lucide-react";
+import {CalendarIcon, Loader2} from "lucide-react";
 import {cn} from "@/lib/utils";
 import Counter from "@/components/ui/counter.jsx";
 import {useDispatch, useSelector} from "react-redux";
@@ -16,6 +16,7 @@ import {createProperty} from "@/redux/actions/propertyActions.js";
 
 export default function CreatePropertyModal({isOpen, setIsOpen}) {
     const dispatch = useDispatch();
+    const {loading} = useSelector(state => state.property);
     const {userInfo} = useSelector(state => state.auth);
     const formikRef = useRef(null);
     const [selectedFiles, setSelectedFiles] = useState([]);
@@ -93,7 +94,7 @@ export default function CreatePropertyModal({isOpen, setIsOpen}) {
                     // validationSchema={createPropertySchema}
                     onSubmit={handleSubmit}
                 >
-                    {({setFieldValue, values}) => (
+                    {({isSubmitting, setFieldValue, values}) => (
                         <Form className="space-y-4">
                             {/* Titre */}
                             <div>
@@ -133,7 +134,7 @@ export default function CreatePropertyModal({isOpen, setIsOpen}) {
                             {/* Localisation */}
                             <div>
                                 <label className="block text-sm font-medium">Localisation</label>
-                                {/*<Field as={Input} name="address" placeholder="Ex: Paris, France"/>*/}
+                                <Field as={Input} placeholder="Ex: Paris, France"/>
                                 {/*<ErrorMessage name="address" component="p" className="text-red-500 text-sm" />*/}
                             </div>
 
@@ -243,7 +244,9 @@ export default function CreatePropertyModal({isOpen, setIsOpen}) {
                                 <Button type="button" variant="outline" onClick={handleClose}>
                                     Annuler
                                 </Button>
-                                <Button type="submit">
+                                <Button disabled={isSubmitting} type="submit">
+                                    {loading &&
+                                        <Loader2 className="animate-spin"/>}
                                     Publier l'annonce
                                 </Button>
                             </DialogFooter>

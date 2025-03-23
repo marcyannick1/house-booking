@@ -4,11 +4,15 @@ import apiClient from "@/api/apiClient.js";
 
 export const fetchProperties = createAsyncThunk(
     "property/fetchProperties",
-    async (_, {rejectWithValue}) => {
+    async (filters = {}, {rejectWithValue}) => {
         try {
-            const response = await axios.get("/api/properties");
-            return response.data; // Retourne les propriétés
+            // 🔹 Convertir les filtres en paramètres d'URL
+            const queryParams = new URLSearchParams(filters).toString();
+            const response = await apiClient.get(`/properties?${queryParams}`);
+
+            return response.data;
         } catch (error) {
+            console.log(error);
             return rejectWithValue(error.response?.data || "Une erreur est survenue");
         }
     }

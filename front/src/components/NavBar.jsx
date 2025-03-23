@@ -1,14 +1,28 @@
 import {Button} from "@/components/ui/button"
 import {Sheet, SheetTrigger, SheetContent} from "@/components/ui/sheet"
 import {Link} from "react-router-dom";
-import {HeartIcon, PlusIcon, UserRound} from "lucide-react";
+import {
+    HeartIcon,
+    HouseIcon,
+    HousePlug,
+    HousePlus,
+    HouseWifi, LogOutIcon,
+    MapPinHouse,
+    PlusIcon,
+    UserRound,
+    Warehouse
+} from "lucide-react";
+import {useDispatch} from "react-redux";
+import {logout} from "@/redux/slices/authSlice.js";
 
 
 export default function NavBar({openModal}) {
+    const dispatch = useDispatch();
     return (
         <header className="sticky top-0 z-50 w-full border-b bg-white dark:border-gray-800 dark:bg-gray-950">
             <div className="container mx-auto flex h-16 max-w-6xl items-center justify-between px-4 md:px-6">
                 <Link to={"/"} className="flex items-center gap-2" prefetch={false}>
+                    <MapPinHouse />
                     <h1>House Booking</h1>
                 </Link>
                 <div className="flex items-center gap-2">
@@ -21,6 +35,10 @@ export default function NavBar({openModal}) {
                     <Button className="md:flex hidden" onClick={openModal}>
                         <PlusIcon />
                         <span>Publier une annonce</span>
+                    </Button>
+                    <Button variant={"secondary"} className="md:flex hidden" onClick={()=>dispatch(logout())}>
+                        <LogOutIcon />
+                        <span>Se déconnecter</span>
                     </Button>
                 </div>
 

@@ -34,14 +34,14 @@ export default function RegisterForm() {
         }
     };
 
-    useEffect(() => {
-        if (success) {
-            dispatch(resetAuthState());
-            navigate('/login');
-        }
-        if (userInfo)
-            navigate('/user-profile');
-    }, [navigate, userInfo, success, dispatch]);
+    // useEffect(() => {
+    //     if (success) {
+    //         dispatch(resetAuthState());
+    //         navigate('/login');
+    //     }
+    //     if (userInfo)
+    //         navigate('/user-profile');
+    // }, [navigate, userInfo, success, dispatch]);
 
     return (
         <Card>
